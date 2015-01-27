@@ -25,5 +25,6 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 header('Content-type: text/plain; charset=UTF-8');
 echo "http://pulp.nethserver.org/nethserver/$release/$repo/$arch/
 http://mirror.nethesis.it/nethserver/$release/$repo/$arch/
+http://mirror1.nethserver.org/nethserver/$release/$repo/$arch/
 ";
 
