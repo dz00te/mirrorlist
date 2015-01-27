@@ -23,8 +23,7 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 }
 
 header('Content-type: text/plain; charset=UTF-8');
-echo sprintf("http://pulp.nethserver.org/nethserver/%s/%s/%s/\r\n",
-               $release, $repo, $arch);
-
-
+echo "http://pulp.nethserver.org/nethserver/$release/$repo/$arch/
+http://mirror.nethesis.it/nethserver/$release/$repo/$arch/
+";
 
