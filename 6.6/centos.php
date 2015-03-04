@@ -1,6 +1,6 @@
 <?php
 
-$distroversion = dirname(__DIR__);
+$distroversion = basename(__DIR__);
 $release = $_GET['release'];
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
