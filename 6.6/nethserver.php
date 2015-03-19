@@ -12,6 +12,8 @@ $valid_repo = in_array($repo, array(
     'base',
     'updates',
     'testing',
+    'nethforge',
+    'nethforge-testing'
 ));
 
 if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
