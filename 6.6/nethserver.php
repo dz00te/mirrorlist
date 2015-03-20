@@ -25,5 +25,6 @@ header('Content-type: text/plain; charset=UTF-8');
 echo "http://mirror.nethserver.org/nethserver/$distroversion/$repo/$arch/
 http://mirror1.nethserver.org/nethserver/$distroversion/$repo/$arch/
 http://mirror.nethesis.it/nethserver/$distroversion/$repo/$arch/
+http://nethserver.de-labrusse.fr/$distroversion/$repo/$arch/
 ";
 
