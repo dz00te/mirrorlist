@@ -15,6 +15,5 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
     exit(1);
 }
 
-if($repo === 'updates') {
-    header(sprintf('Location: https://mirrors.fedoraproject.org/mirrorlist?repo=epel-%s&arch=%s', $release, $arch));
-}
+header(sprintf('Location: https://mirrors.fedoraproject.org/mirrorlist?repo=epel-%s&arch=%s', $release, $arch));
+
