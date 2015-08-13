@@ -15,5 +15,5 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
     exit(1);
 }
 
-header(sprintf('Location: http://mirrorlist.centos.org/?release=%s&arch=%s&repo=%s',
-               $distroversion, $arch, $repo));
+# Fix for CentOS 6.7 release
+echo "http://vault.centos.org/$distroversion/$repo/$arch";
