@@ -27,5 +27,6 @@ http://mirror1.nethserver.org/nethserver/$distroversion/$repo/$arch/
 http://mirror.nethesis.it/nethserver/$distroversion/$repo/$arch/
 http://nethserver.de-labrusse.fr/$distroversion/$repo/$arch/
 http://nethserver.antani.co/nethserver/$distroversion/$repo/$arch/
+http://mirror.framassa.org/nethserver/$distroversion/$repo/$arch/
 ";
 
