@@ -22,11 +22,8 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 }
 
 header('Content-type: text/plain; charset=UTF-8');
-echo "http://mirror.nethserver.org/nethserver/$distroversion/$repo/$arch/
-http://mirror1.nethserver.org/nethserver/$distroversion/$repo/$arch/
-http://mirror.nethesis.it/nethserver/$distroversion/$repo/$arch/
-http://nethserver.de-labrusse.fr/$distroversion/$repo/$arch/
-http://nethserver.antani.co/nethserver/$distroversion/$repo/$arch/
-http://mirror.framassa.org/nethserver/$distroversion/$repo/$arch/
-";
+$mirrors = file("../mirrors");
+foreach($mirrors as $mirror) {
+    echo trim($mirror)."/$distroversion/$repo/$arch/\n";
+}
 
