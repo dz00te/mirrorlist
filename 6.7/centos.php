@@ -16,5 +16,5 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 }
 
 header(sprintf('Location: http://mirrorlist.centos.org/?release=%s&arch=%s&repo=%s',
-               $distroversion, $arch, $repo));
+               $release, $arch, $repo));
 
