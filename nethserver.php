@@ -4,7 +4,7 @@ $release = $_GET['release'];
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
 
-$valid_release = $release === '7';
+$valid_release = in_array($release, array('6', '7'));
 $valid_arch = in_array($arch, array('x86_64'));
 $valid_repo = in_array($repo, array(
     'base',
@@ -24,7 +24,7 @@ header('Content-type: text/plain; charset=UTF-8');
 if($repo === 'testing' || $repo === 'nethforge-testing') {
     $mirrors = array('http://packages.nethserver.org/nethserver');
 } else {
-    $mirrors = file("../mirrors");
+    $mirrors = file("mirrors");
 }
 
 foreach($mirrors as $mirror) {
