@@ -1,12 +1,10 @@
 <?php
 
-$distroversion = basename(__DIR__);
 $release = $_GET['release'];
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
 
-// Validate release number against $distroversion
-$valid_release = $release === preg_replace('/(\.\d+)+$/', '', $distroversion);
+$valid_release = $release === '6';
 $valid_arch = in_array($arch, array('x86_64'));
 $valid_repo = in_array($repo, array('os', 'updates'));
 
@@ -16,5 +14,5 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 }
 
 header(sprintf('Location: http://mirrorlist.centos.org/?release=%s&arch=%s&repo=%s',
-               $distroversion, $arch, $repo));
+               $release, $arch, $repo));
 

@@ -1,12 +1,10 @@
 <?php
 
-$distroversion = basename(__DIR__);
 $release = $_GET['release'];
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
 
-// Validate release number against distroversion:
-$valid_release = $release === preg_replace('/(\.\d+)+$/', '', $distroversion);
+$valid_release = $release === '7';
 $valid_arch = in_array($arch, array('x86_64'));
 $valid_repo = in_array($repo, array(
     'base',
@@ -30,6 +28,6 @@ if($repo === 'testing' || $repo === 'nethforge-testing') {
 }
 
 foreach($mirrors as $mirror) {
-    echo trim($mirror)."/$distroversion/$repo/$arch/\n";
+    echo trim($mirror)."/$release/$repo/$arch/\n";
 }
 
