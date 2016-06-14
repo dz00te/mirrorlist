@@ -16,4 +16,4 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 }
 
 # Fix for CentOS 6.7 release
-echo "http://vault.centos.org/$distroversion/$repo/$arch";
+echo "http://vault.centos.org/$distroversion/$repo/$arch\n";

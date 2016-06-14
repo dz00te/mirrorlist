@@ -15,5 +15,5 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
     exit(1);
 }
 
-echo "http://vault.centos.org/$distroversion/$repo/$arch";
+echo "http://vault.centos.org/$distroversion/$repo/$arch\n";
 
