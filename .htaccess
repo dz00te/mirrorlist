@@ -1,6 +1,8 @@
 RewriteEngine on
 
+RewriteRule "robots\.txt" robots.txt [END]
+
 RewriteRule "7([\d\.]*)/nethserver(.*)$" nethserver.php/$2 [END]
 RewriteRule "([\d\.]+)/centos(.*)$" /$1/centos.php/$2 [END]
 RewriteRule "([\d\.]+)/nethserver(.*)$" /$1/nethserver.php$2 [END]
-
+RewriteRule "(.*)$" /nethserver.php$1 [END]
