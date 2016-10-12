@@ -22,7 +22,7 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 }
 
 header('Content-type: text/plain; charset=UTF-8');
-$mirrors = file("../mirrors");
+$mirrors = array('http://mirror.nethserver.org/nethserver');
 foreach($mirrors as $mirror) {
     echo trim($mirror)."/$distroversion/$repo/$arch/\n";
 }

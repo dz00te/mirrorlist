@@ -26,7 +26,7 @@ header('Content-type: text/plain; charset=UTF-8');
 if($repo === 'testing' || $repo === 'nethforge-testing') {
     $mirrors = array('http://packages.nethserver.org/nethserver');
 } else {
-    $mirrors = file("../mirrors");
+    $mirrors = array('http://mirror.nethserver.org/nethserver');
 }
 
 foreach($mirrors as $mirror) {

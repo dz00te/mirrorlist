@@ -1,8 +1,8 @@
 RewriteEngine on
 
-RewriteRule "7([\d\.]*)/nethserver$" nethserver.php [END]
-RewriteRule "([\d\.]+)/centos$" /$1/centos.php/ [END]
-RewriteRule "([\d\.]+)/nethserver$" /$1/nethserver.php$2 [END]
+RewriteRule "^7([\d\.]*)/nethserver$" nethserver.php [END]
+RewriteRule "^([\d\.]+)/centos$" /$1/centos.php/ [END]
+RewriteRule "^([\d\.]+)/nethserver$" /$1/nethserver.php$2 [END]
 
 RewriteCond %{QUERY_STRING} "repo="
 RewriteRule "^$" /nethserver.php [END]
