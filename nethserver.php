@@ -1,10 +1,12 @@
 <?php
 
 $release = $_GET['release'];
+$nsrelease = $_GET['nsrelease'];
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
 
 $valid_release = in_array($release, array('6', '7'));
+$valid_nsrelease = in_array($nsrelease, array('6.8','6.9','7.3.1611','7.4.1708'));
 $valid_arch = in_array($arch, array('x86_64'));
 $valid_repo = in_array($repo, array(
     'base',
@@ -13,6 +15,11 @@ $valid_repo = in_array($repo, array(
     'nethforge',
     'nethforge-testing'
 ));
+
+# nsrelease overrides release
+if ( $valid_nsrelease ) {
+    $release = $nsrelease;
+}
 
 if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
     header("HTTP/1.0 404 Not Found");
