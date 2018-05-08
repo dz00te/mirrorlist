@@ -28,7 +28,7 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
 
 header('Content-type: text/plain; charset=UTF-8');
 
-if($repo === 'testing' || $repo === 'nethforge-testing') {
+if($repo === 'testing' || $repo === 'nethforge-testing' || $release == '7.5.1804') {
     $mirrors = array('http://packages.nethserver.org/nethserver');
 } else {
     $mirrors = file("mirrors");
