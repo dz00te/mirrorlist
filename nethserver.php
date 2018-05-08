@@ -6,7 +6,7 @@ $arch = $_GET['arch'];
 $repo = $_GET['repo'];
 
 $valid_release = in_array($release, array('6', '7'));
-$valid_nsrelease = in_array($nsrelease, array('6.8','6.9','7.3.1611','7.4.1708'));
+$valid_nsrelease = in_array($nsrelease, array('6.8','6.9','7.3.1611','7.4.1708','7.5.1804'));
 $valid_arch = in_array($arch, array('x86_64'));
 $valid_repo = in_array($repo, array(
     'base',
