@@ -1,7 +1,5 @@
 <?php
 
-# Temporary script before 6.10 switch
-
 $release = $_GET['release'];
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
@@ -15,9 +13,6 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
     exit(1);
 }
 
-$mirrors = file("../ce-mirrors");
+header(sprintf('Location: http://mirrorlist.centos.org/?release=%s&arch=%s&repo=%s',
+               $release, $arch, $repo));
 
-foreach ($mirrors as $mirror) {
-    $mirror = trim($mirror);
-    echo "$mirror/6.9/$repo/$arch/\n";
-}
