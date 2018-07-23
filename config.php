@@ -22,7 +22,7 @@
 
 // Map an upstream major version number to the latest stable NethServer release
 $stable_releases = array(
-    '6' => '6.9',
+    '6' => '6.10',
     '7' => '7.5.1804',
 );
 
@@ -36,14 +36,12 @@ $centos_releases = array(
 // Upstream versions served by vault.centos.org. It implies the same NethServer
 // releases aren't served by NethServer mirrors any more.
 $vault_releases = array(
-    '6.9',
 );
 
 // Other valid release numbers for upcoming NethServer releases. If not listed
 // here, an unknown nsrelease number is mapped to the stable release (i.e. the
 // system is upgraded to latest stable). Always served by packages.nethserver.org.
 $development_releases = array(
-    '6.10',
 );
 
 // Repositories that are always served by packages.nethserver.org
