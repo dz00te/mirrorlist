@@ -20,34 +20,22 @@
  * along with NethServer.  If not, see COPYING.
  */
 
+// Redirect to upstream mirrorlist: required by NethServer 6
+// In ns7 the client goes directly to CentOS mirrors.
+
 // Global definition of latest, valult, and development releases:
 include 'config.php';
 
 $release = $_GET['release'];
-
-// Read nsrelease from query string, or fall back to URL path for ns6 (i.e. 6.9/nethserver?...)
-$nsrelease = $_GET['nsrelease'] ?: str_replace('/', '', $_SERVER['PATH_INFO']);
+// Read nsrelease from URL path for ns6 (i.e. 6.9/centos?...)
+$nsrelease = str_replace('/', '', $_SERVER['PATH_INFO']);
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
 
-$ns_repos = array(
-    'base',
-    'updates',
-    'testing',
-    'nethforge',
-    'nethforge-testing'
-);
-
-$ce_repos = array(
-    'ce-base' => 'os',
-    'ce-updates' => 'updates',
-    'ce-extras' => 'extras',
-);
-
-$valid_release = in_array($release, array_keys($stable_releases));
+$valid_release = $release == '6';
 $valid_nsrelease = in_array($nsrelease, array_merge($stable_releases, $development_releases, $vault_releases)) && ($nsrelease[0] == $release[0]);
 $valid_arch = in_array($arch, array('x86_64'));
-$valid_repo = in_array($repo, array_merge($ns_repos,array_keys($ce_repos)));
+$valid_repo = in_array($repo, array('os', 'updates'));
 
 if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
     header("HTTP/1.0 404 Not Found");
@@ -61,26 +49,19 @@ if ( ! $valid_nsrelease ) {
 
 header('Content-type: text/plain; charset=UTF-8');
 
-$served_by_nethserver_mirrors = in_array($repo, $ns_repos)
-  && ! (in_array($nsrelease, $vault_releases) || in_array($repo, $development_repos) || in_array($nsrelease, $development_releases))
-;
-
-if($served_by_nethserver_mirrors) {
-    $mirrors = file("mirrors");
-} elseif (in_array($repo, array_keys($ce_repos))) {
-    // map to real repository name:
-    $repo = $ce_repos[$repo];
-    if(in_array($nsrelease, $vault_releases)) {
-        $mirrors = array('http://vault.centos.org');
-    } else {
-        // CentOS versions served by upstream mirror infrastructure
-        $mirrors = file("ce-mirrors");
-    }
+if(in_array($nsrelease, $vault_releases)) {
+    echo "http://vault.centos.org/$nsrelease/$repo/$arch/\n";
+    exit(0);
+} elseif(in_array($nsrelease, $development_releases) || $stable_releases[$release] == $centos_releases[$release]) {
+    // Served by upstream mirrors:
+    header(sprintf('Location: http://mirrorlist.centos.org/?release=%s&arch=%s&repo=%s',
+                   $release, $arch, $repo));
+    exit(0);
 } else {
-    // Serverd only by the NethServer master mirror
-    $mirrors = array('http://packages.nethserver.org/nethserver');
-}
-
-foreach($mirrors as $mirror) {
-    echo trim($mirror)."/$nsrelease/$repo/$arch/\n";
+    // Version lock for ns6
+    $mirrors = file("ce-mirrors");
+    foreach($mirrors as $mirror) {
+        echo trim($mirror)."/$nsrelease/$repo/$arch/\n";
+    }
+    exit(0);
 }
