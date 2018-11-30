@@ -26,7 +26,7 @@ $stable_releases = array(
     '7' => '7.5.1804',
 );
 
-// Map an upstream majour version number to the latest stable CentOS release.
+// Map an upstream major version number to the latest stable CentOS release.
 // Update as soon as CentOS releases a new stable version.
 $centos_releases = array(
     '6' => '6.10',
