@@ -42,6 +42,7 @@ $vault_releases = array(
 // here, an unknown nsrelease number is mapped to the stable release (i.e. the
 // system is upgraded to latest stable). Always served by packages.nethserver.org.
 $development_releases = array(
+    '7.6.1810',
 );
 
 // Repositories that are always served by packages.nethserver.org
