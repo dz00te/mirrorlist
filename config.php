@@ -30,7 +30,7 @@ $stable_releases = array(
 // Update as soon as CentOS releases a new stable version.
 $centos_releases = array(
     '6' => '6.10',
-    '7' => '7.5.1804',
+    '7' => '7.6.1810',
 );
 
 // Upstream versions served by vault.centos.org. It implies the same NethServer
