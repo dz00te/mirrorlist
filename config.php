@@ -23,7 +23,7 @@
 // Map an upstream major version number to the latest stable NethServer release
 $stable_releases = array(
     '6' => '6.10',
-    '7' => '7.5.1804',
+    '7' => '7.6.1810',
 );
 
 // Map an upstream major version number to the latest stable CentOS release.
@@ -42,7 +42,6 @@ $vault_releases = array(
 // here, an unknown nsrelease number is mapped to the stable release (i.e. the
 // system is upgraded to latest stable). Always served by packages.nethserver.org.
 $development_releases = array(
-    '7.6.1810',
 );
 
 // Repositories that are always served by packages.nethserver.org
