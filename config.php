@@ -36,6 +36,7 @@ $centos_releases = array(
 // Upstream versions served by vault.centos.org. It implies the same NethServer
 // releases aren't served by NethServer mirrors any more.
 $vault_releases = array(
+    '7.5.1804',
 );
 
 // Other valid release numbers for upcoming NethServer releases. If not listed
