@@ -29,6 +29,7 @@ $release = $_GET['release'];
 $nsrelease = $_GET['nsrelease'] ?: str_replace('/', '', $_SERVER['PATH_INFO']);
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
+$repo_suffix = "";
 
 $ns_repos = array(
     'base',
@@ -38,6 +39,9 @@ $ns_repos = array(
     'nethforge-testing'
 );
 
+// Map our repository name to CentOS name
+// Warning! The "-" character is treated specially (because of SCLo),
+// to set $repo_suffix.
 $ce_repos = array(
     'ce-base' => 'os',
     'ce-updates' => 'updates',
@@ -78,8 +82,8 @@ $served_by_nethserver_mirrors = in_array($repo, $ns_repos)
 if($served_by_nethserver_mirrors) {
     $mirrors = file("mirrors");
 } elseif (in_array($repo, array_keys($ce_repos))) {
-    // map to real repository name:
-    $repo = $ce_repos[$repo];
+    // map to real repository name, extracting the $repo_suffix (required by SCLo):
+    list($repo, $repo_suffix) = array_merge(explode('-', $ce_repos[$repo], 2), array(''));
     if(in_array($nsrelease, $vault_releases)) {
         $mirrors = array('http://vault.centos.org');
     } else {
@@ -92,5 +96,9 @@ if($served_by_nethserver_mirrors) {
 }
 
 foreach($mirrors as $mirror) {
-    echo trim($mirror)."/$nsrelease/$repo/$arch/\n";
+    if($repo_suffix) {
+        echo trim($mirror)."/$nsrelease/$repo/$arch/$repo_suffix/\n";
+    } else {
+        echo trim($mirror)."/$nsrelease/$repo/$arch/\n";
+    }
 }
