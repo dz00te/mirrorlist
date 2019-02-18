@@ -56,6 +56,12 @@ if($arch == 'armv7hl') {
     $arch = 'armhfp';
 }
 
+// Assign to nsrelease a default full stable release number, required by
+// legacy/unlocked clients that do not send it:
+if( ! $nsrelease) {
+    $nsrelease = array_shift(preg_grep("/^${release}\./", $stable_releases));
+}
+
 $major_releases = array_unique(preg_replace('/^(\d).*/', '$1', $stable_releases));
 $valid_release = in_array($release, $major_releases);
 $valid_nsrelease = in_array($nsrelease, array_merge($stable_releases, $vault_releases)) && ($nsrelease[0] == $release[0]);
