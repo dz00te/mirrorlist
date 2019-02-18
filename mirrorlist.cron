@@ -1,0 +1,7 @@
+#
+# Example. Refresh CentOS mirror list every day at 0 and 12 UTC
+#
+RANDOM_DELAY=30
+CRON_TZ=UTC
+
+45 0,12 * * *       apache /usr/bin/php /var/www/mirrorlist.nethserver.org/cron.php

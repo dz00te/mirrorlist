@@ -21,7 +21,8 @@
  */
 
 // Global definition of latest, valult, and development releases:
-include 'config.php';
+require_once('config.php');
+require_once('mirrorcache.php');
 
 $release = $_GET['release'];
 
@@ -55,33 +56,30 @@ if($arch == 'armv7hl') {
     $arch = 'armhfp';
 }
 
-$valid_release = in_array($release, array_keys($stable_releases));
-$valid_nsrelease = in_array($nsrelease, array_merge($stable_releases, $development_releases, $vault_releases)) && ($nsrelease[0] == $release[0]);
+$major_releases = array_unique(preg_replace('/^(\d).*/', '$1', $stable_releases));
+$valid_release = in_array($release, $major_releases);
+$valid_nsrelease = in_array($nsrelease, array_merge($stable_releases, $vault_releases)) && ($nsrelease[0] == $release[0]);
 $valid_arch = in_array($arch, array_merge($stable_arches, $development_arches));
 $valid_repo = in_array($repo, array_merge($ns_repos,array_keys($ce_repos)));
 
-if( ! $valid_release || ! $valid_arch || ! $valid_repo ) {
+header('Content-type: text/plain; charset=UTF-8');
+
+if( ! $valid_release || ! $valid_arch || ! $valid_repo || ! $valid_nsrelease ) {
     header("HTTP/1.0 404 Not Found");
+    echo "Invalid release/repo/arch\n";
     exit(1);
 }
 
-if ( ! $valid_nsrelease ) {
-    // Return the latest stable release:
-    $nsrelease = $stable_releases[$release];
-}
-
-header('Content-type: text/plain; charset=UTF-8');
 
 $served_by_nethserver_mirrors = in_array($repo, $ns_repos)
   && ! (in_array($nsrelease, $vault_releases)
         || in_array($repo, $development_repos)
-        || in_array($nsrelease, $development_releases)
         || in_array($arch, $development_arches))
 ;
 
 if($served_by_nethserver_mirrors) {
-    // trim leading CC-prefix and trailing slash:
-    $mirrors = preg_replace('/(^\w\w|\/$)/', '', file("mirrors"));
+    // trim spaces, leading CC-prefix and trailing slash:
+    $mirrors = array_filter(preg_replace('/(^\w\w +|\/$)/', '', array_map('trim', file("mirrors"))));
 } elseif (in_array($repo, array_keys($ce_repos))) {
     // map to real repository name, extracting the $repo_suffix (required by SCLo):
     list($repo, $repo_suffix) = array_merge(explode('-', $ce_repos[$repo], 2), array(''));
@@ -89,17 +87,17 @@ if($served_by_nethserver_mirrors) {
         $mirrors = array('http://vault.centos.org');
     } else {
         // CentOS versions served by upstream mirror infrastructure
-        $mirrors = file("ce-mirrors");
+        $mirrors = get_centos_mirrors($release, $arch);
     }
 } else {
     // Serverd only by the NethServer master mirror
-    $mirrors = array('http://packages.nethserver.org/nethserver');
+    $mirrors = array('http://mirror.nethserver.org/nethserver');
 }
 
 foreach($mirrors as $mirror) {
     if($repo_suffix) {
-        echo trim($mirror)."/$nsrelease/$repo/$arch/$repo_suffix/\n";
+        echo "$mirror/$nsrelease/$repo/$arch/$repo_suffix/\n";
     } else {
-        echo trim($mirror)."/$nsrelease/$repo/$arch/\n";
+        echo "$mirror/$nsrelease/$repo/$arch/\n";
     }
 }

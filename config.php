@@ -20,29 +20,27 @@
  * along with NethServer.  If not, see COPYING.
  */
 
-// Map an upstream major version number to the latest stable NethServer release
+// Version numbers served by mirrors
 $stable_releases = array(
-    '6' => '6.10',
-    '7' => '7.6.1810',
+    '6.10',
+    '7.6.1810',
 );
 
-// Map an upstream major version number to the latest stable CentOS release.
-// Update as soon as CentOS releases a new stable version.
-$centos_releases = array(
-    '6' => '6.10',
-    '7' => '7.6.1810',
+$ce_mirror_countries = array(
+    'au' => 1,
+    'br' => 1,
+    'cn' => 1,
+    'gb' => 2,
+    'it' => 2,
+    'us' => 2,
+    'za' => 1,
 );
 
 // Upstream versions served by vault.centos.org. It implies the same NethServer
-// releases aren't served by NethServer mirrors any more.
+// releases aren't served by NethServer mirrors any more. Add the release
+// numbers here to prevent undesired upgrades when yum-cron runs.
 $vault_releases = array(
     '7.5.1804',
-);
-
-// Other valid release numbers for upcoming NethServer releases. If not listed
-// here, an unknown nsrelease number is mapped to the stable release (i.e. the
-// system is upgraded to latest stable). Always served by packages.nethserver.org.
-$development_releases = array(
 );
 
 // Repositories that are always served by packages.nethserver.org
