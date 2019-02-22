@@ -51,7 +51,7 @@ function refresh_centos_mirrors_cache($cc_map, $release, $arch)
         // Extract $nb items from the response, trimming the release number suffix:
         $cc_mirrors = array_slice(array_filter(array_map($filter_url, explode("\n", curl_exec($rh)))), 0, $nb);
         if(empty($cc_mirrors)) {
-            error_log("[ERROR] $cc mirror list is empty: " . curl_error($rh);
+            error_log("[ERROR] $cc mirror list is empty: " . curl_error($rh));
         } else {
             $mirrors = array_merge($mirrors, $cc_mirrors);
         }
