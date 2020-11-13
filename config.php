@@ -28,6 +28,7 @@ $stable_releases = array(
 
 // Other valid version numbers served by mirror.nethserver.org
 $development_releases = array(
+    '7.9.2009',
 );
 
 $ce_mirror_countries = array(
