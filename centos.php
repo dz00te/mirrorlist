@@ -48,7 +48,7 @@ if( ! $valid_release || ! $valid_arch || ! $valid_repo || ! $valid_nsrelease ) {
 }
 
 if(in_array($nsrelease, $vault_releases)) {
-    $mirrors = array('http://vault.centos.org/');
+    $mirrors = array('http://vault.centos.org');
 } else {
     $mirrors = get_centos_mirrors($release, $arch);
     if(empty($mirrors)) {
