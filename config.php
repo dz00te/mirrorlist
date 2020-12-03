@@ -38,7 +38,6 @@ $vault_releases = array(
     '7.8.2003',
 );
 
-
 // Repositories that are always served by packages.nethserver.org
 $development_repos = array(
     'testing',
@@ -60,9 +59,9 @@ $development_arches = array(
     'aarch64',
 );
 
-///
-/// Select CentOS mirrors from specific countries across the globe
-///
+//
+// Select CentOS mirrors from specific countries across the globe
+//
 $ce_mirror_countries = array(
     'au' => 1,
     'br' => 1,
