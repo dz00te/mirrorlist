@@ -1,0 +1,15 @@
+name: Code checks
+on: [push, pull_request]
+
+jobs:
+  checks:
+    runs-on: ubuntu-18.04
+    steps:
+    - name: "Checkout code"
+      uses: actions/checkout@v2
+    - name: "Setup PHP"
+      uses: shivammathur/setup-php@2.1.3
+      with:
+        php-version: '5.4'
+    - name: Run PHP lint checks
+      run: for F in $(find . -name '*.php'); do php -l $F || exit 1; done
