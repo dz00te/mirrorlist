@@ -22,7 +22,6 @@
 
 // Version numbers served by mirrors
 $stable_releases = array(
-    '6.10',
     '7.9.2009',
 );
 
