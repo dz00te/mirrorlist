@@ -30,16 +30,6 @@ $stable_releases = array(
 $development_releases = array(
 );
 
-$ce_mirror_countries = array(
-    'au' => 1,
-    'br' => 1,
-    'cn' => 1,
-    'gb' => 2,
-    'it' => 2,
-    'us' => 2,
-    'za' => 1,
-);
-
 // Upstream versions served by vault.centos.org. It implies the same NethServer
 // releases are not served by NethServer mirrors any more.
 $vault_releases = array(
@@ -49,12 +39,12 @@ $vault_releases = array(
     '7.8.2003',
 );
 
+
 // Repositories that are always served by packages.nethserver.org
 $development_repos = array(
     'testing',
     'nethforge-testing',
 );
-
 
 // Architectures:
 //
@@ -69,4 +59,17 @@ $stable_arches = array(
 $development_arches = array(
     'armhfp',
     'aarch64',
+);
+
+///
+/// Select CentOS mirrors from specific countries across the globe
+///
+$ce_mirror_countries = array(
+    'au' => 1,
+    'br' => 1,
+    'cn' => 1,
+    'gb' => 2,
+    'it' => 2,
+    'us' => 2,
+    'za' => 1,
 );
