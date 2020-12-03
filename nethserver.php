@@ -64,9 +64,10 @@ if( ! preg_match("/^${release}\./", $nsrelease)) {
     $nsrelease = array_shift(preg_grep("/^${release}\./", $stable_releases));
 }
 
-$major_releases = array_unique(preg_replace('/^(\d).*/', '$1', $stable_releases));
+$known_releases = array_unique(array_merge($stable_releases, $vault_releases, $development_releases));
+$major_releases = array_unique(preg_replace('/^(\d).*/', '$1', $known_releases));
 $valid_release = in_array($release, $major_releases);
-$valid_nsrelease = in_array($nsrelease, array_merge($stable_releases, $vault_releases, $development_releases)) && ($nsrelease[0] == $release[0]);
+$valid_nsrelease = in_array($nsrelease, $known_releases) && ($nsrelease[0] == $release[0]);
 $valid_arch = in_array($arch, array_merge($stable_arches, $development_arches));
 $valid_repo = in_array($repo, array_merge($ns_repos,array_keys($ce_repos)));
 

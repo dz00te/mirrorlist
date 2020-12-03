@@ -34,8 +34,9 @@ $nsrelease = str_replace('/', '', $_SERVER['PATH_INFO']);
 $arch = $_GET['arch'];
 $repo = $_GET['repo'];
 
+$known_releases = array_unique(array_merge($stable_releases, $vault_releases, $development_releases));
 $valid_release = $release == '6';
-$valid_nsrelease = in_array($nsrelease, array_merge($stable_releases, $vault_releases)) && ($nsrelease[0] == $release[0]);
+$valid_nsrelease = in_array($nsrelease, $known_releases) && ($nsrelease[0] == $release[0]);
 $valid_arch = in_array($arch, array('x86_64'));
 $valid_repo = in_array($repo, array('os', 'updates'));
 

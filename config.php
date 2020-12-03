@@ -22,22 +22,11 @@
 
 // Version numbers served by mirrors
 $stable_releases = array(
-    '6.10',
     '7.9.2009',
 );
 
 // Other valid version numbers served by mirror.nethserver.org
 $development_releases = array(
-);
-
-$ce_mirror_countries = array(
-    'au' => 1,
-    'br' => 1,
-    'cn' => 1,
-    'gb' => 2,
-    'it' => 2,
-    'us' => 2,
-    'za' => 1,
 );
 
 // Upstream versions served by vault.centos.org. It implies the same NethServer
@@ -55,7 +44,6 @@ $development_repos = array(
     'nethforge-testing',
 );
 
-
 // Architectures:
 //
 // - "stable" goes to the official NS mirror infrastructure
@@ -69,4 +57,17 @@ $stable_arches = array(
 $development_arches = array(
     'armhfp',
     'aarch64',
+);
+
+//
+// Select CentOS mirrors from specific countries across the globe
+//
+$ce_mirror_countries = array(
+    'au' => 1,
+    'br' => 1,
+    'cn' => 1,
+    'gb' => 2,
+    'it' => 2,
+    'us' => 2,
+    'za' => 1,
 );
